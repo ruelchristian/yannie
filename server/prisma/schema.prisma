@@ -1,0 +1,110 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  STAFF
+  ADMIN
+}
+
+enum ItemType {
+  LOST
+  FOUND
+}
+
+enum ItemStatus {
+  ACTIVE
+  CLAIMED
+  RETURNED
+  CLOSED
+}
+
+enum ClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           Int          @id @default(autoincrement())
+  email        String       @unique
+  studentId    String       @unique @map("student_id")
+  fullName     String       @map("full_name")
+  phoneNumber  String?      @map("phone_number")
+  role         Role         @default(STUDENT)
+  password     String
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  reports      ItemReport[]
+  claims       ItemClaim[]
+
+  @@map("users")
+}
+
+model Category {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  icon        String?
+  description String?
+  createdAt   DateTime     @default(now()) @map("created_at")
+
+  reports     ItemReport[]
+
+  @@map("categories")
+}
+
+model ItemReport {
+  id           Int         @id @default(autoincrement())
+  userId       Int         @map("user_id")
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId   Int         @map("category_id")
+  category     Category    @relation(fields: [categoryId], references: [id])
+  type         ItemType
+  title        String
+  description  String      @db.Text
+  status       ItemStatus  @default(ACTIVE)
+  locationName String      @map("location_name")
+  latitude     Float?
+  longitude    Float?
+  dateIncident DateTime    @map("date_incident")
+  contactInfo  String?     @map("contact_info")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+
+  images       ItemImage[]
+  claims       ItemClaim[]
+
+  @@map("item_reports")
+}
+
+model ItemImage {
+  id        Int        @id @default(autoincrement())
+  reportId  Int        @map("report_id")
+  report    ItemReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  imageUrl  String     @map("image_url")
+  createdAt DateTime   @default(now()) @map("created_at")
+
+  @@map("item_images")
+}
+
+model ItemClaim {
+  id            Int         @id @default(autoincrement())
+  reportId      Int         @map("report_id")
+  report        ItemReport  @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  claimantId    Int         @map("claimant_id")
+  claimant      User        @relation(fields: [claimantId], references: [id], onDelete: Cascade)
+  proofDetails  String      @map("proof_details") @db.Text
+  contactNumber String?     @map("contact_number")
+  status        ClaimStatus @default(PENDING)
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  @@map("item_claims")
+}

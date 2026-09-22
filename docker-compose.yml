@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: icct_lost_found_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: icct_root_password_123
+      MYSQL_DATABASE: icct_lost_found
+      MYSQL_USER: icct_user
+      MYSQL_PASSWORD: icct_password_123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-picct_root_password_123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:

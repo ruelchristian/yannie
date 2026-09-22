@@ -1,0 +1,25 @@
+{
+  "name": "icct-lost-and-found",
+  "version": "1.0.0",
+  "description": "Local Directory - Lost & Found : A Web-Based Lost and Found Directory for ICCT Cainta",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server run start",
+    "db:push": "npm --prefix server run prisma:push",
+    "db:seed": "npm --prefix server run prisma:seed",
+    "db:up": "docker compose up -d"
+  },
+  "author": "Yeinnee Ruby Lavado",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
