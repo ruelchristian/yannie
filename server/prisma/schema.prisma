@@ -81,6 +81,10 @@ model ItemReport {
   images       ItemImage[]
   claims       ItemClaim[]
 
+  @@index([type, status])
+  @@index([categoryId])
+  @@index([userId])
+  @@index([createdAt])
   @@map("item_reports")
 }
 
@@ -91,6 +95,7 @@ model ItemImage {
   imageUrl  String     @map("image_url")
   createdAt DateTime   @default(now()) @map("created_at")
 
+  @@index([reportId])
   @@map("item_images")
 }
 
@@ -106,5 +111,7 @@ model ItemClaim {
   createdAt     DateTime    @default(now()) @map("created_at")
   updatedAt     DateTime    @updatedAt @map("updated_at")
 
+  @@index([reportId])
+  @@index([claimantId])
   @@map("item_claims")
 }

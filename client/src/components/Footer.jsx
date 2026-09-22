@@ -5,6 +5,22 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-400 text-sm mt-20 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Security Policy & Scope Disclaimer Card */}
+        <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+          <div className="flex-1">
+            <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-1 flex items-center gap-2">
+              <span>Campus Security Notice & Physical Custody Protocol</span>
+              <span className="text-[10px] bg-sky-900 text-sky-200 px-2 py-0.5 rounded-full font-semibold">IPT2 Sec. 4.2</span>
+            </h4>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              This student-run directory facilitates peer awareness and mapping. High-value surrendered items (such as wallets, cash, electronics, jewelry, or government IDs) must be turned over to the <strong>ICCT Campus Security Post at the Main Gate</strong> for official logging and secure physical custody.
+            </p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center space-x-2 text-white font-bold text-base mb-3">

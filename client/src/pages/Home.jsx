@@ -15,6 +15,7 @@ import {
   Clock,
   Sparkles,
   Layers,
+  RotateCcw,
 } from 'lucide-react';
 
 const Home = ({ onOpenReportModal }) => {
@@ -80,6 +81,19 @@ const Home = ({ onOpenReportModal }) => {
   const totalLostCount = items.filter((i) => i.type === 'LOST').length;
   const totalFoundCount = items.filter((i) => i.type === 'FOUND').length;
   const activeCount = items.filter((i) => i.status === 'ACTIVE').length;
+
+  const hasActiveFilters =
+    selectedType !== 'ALL' ||
+    selectedCategory !== '' ||
+    selectedStatus !== 'ALL' ||
+    searchQuery.trim() !== '';
+
+  const handleClearFilters = () => {
+    setSelectedType('ALL');
+    setSelectedCategory('');
+    setSelectedStatus('ALL');
+    setSearchQuery('');
+  };
 
   return (
     <div className="space-y-8">
@@ -253,6 +267,18 @@ const Home = ({ onOpenReportModal }) => {
               <option value="RETURNED">Returned</option>
               <option value="CLOSED">Closed</option>
             </select>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-700 text-xs font-semibold hover:bg-rose-100 transition-colors shrink-0"
+                title="Reset all filters"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset Filters</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -294,13 +320,24 @@ const Home = ({ onOpenReportModal }) => {
                   Try adjusting your search keywords, category filters, or report a new item.
                 </p>
               </div>
-              <button
-                onClick={onOpenReportModal}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-700 text-white rounded-xl text-xs font-semibold hover:bg-sky-800 transition-colors"
-              >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Post New Report</span>
-              </button>
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                {hasActiveFilters && (
+                  <button
+                    onClick={handleClearFilters}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-300 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-50 transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Clear Filters</span>
+                  </button>
+                )}
+                <button
+                  onClick={onOpenReportModal}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-sky-700 text-white rounded-xl text-xs font-semibold hover:bg-sky-800 transition-colors shadow-sm"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Post New Report</span>
+                </button>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

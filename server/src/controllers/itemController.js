@@ -173,16 +173,28 @@ const createItem = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Item type must be either LOST or FOUND.' });
     }
 
-    // Process files from multer
-    let imagesToCreate = [];
+    // Process files from multer and/or external image URLs
+    const imagesToCreate = [];
     if (req.files && req.files.length > 0) {
-      imagesToCreate = req.files.map((file) => ({
-        imageUrl: `/uploads/${file.filename}`,
-      }));
-    } else if (imageUrls) {
-      // Support array or single URL if passed
-      const urls = Array.isArray(imageUrls) ? imageUrls : [imageUrls];
-      imagesToCreate = urls.filter(Boolean).map((url) => ({ imageUrl: url }));
+      req.files.forEach((file) => {
+        imagesToCreate.push({ imageUrl: `/uploads/${file.filename}` });
+      });
+    }
+
+    if (imageUrls) {
+      try {
+        const parsedUrls = typeof imageUrls === 'string'
+          ? (imageUrls.startsWith('[') ? JSON.parse(imageUrls) : imageUrls.split(',').map((u) => u.trim()))
+          : imageUrls;
+        const urlsArray = Array.isArray(parsedUrls) ? parsedUrls : [parsedUrls];
+        urlsArray.forEach((url) => {
+          if (typeof url === 'string' && url.trim().length > 0) {
+            imagesToCreate.push({ imageUrl: url.trim() });
+          }
+        });
+      } catch (err) {
+        console.warn('Failed parsing imageUrls:', err);
+      }
     }
 
     const item = await prisma.itemReport.create({

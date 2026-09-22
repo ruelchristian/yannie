@@ -166,6 +166,10 @@ const ItemDetailModal = ({ item, onClose, onItemUpdated }) => {
                       src={getImageUrl(img.imageUrl)}
                       alt={`${item.title} ${idx + 1}`}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80';
+                      }}
                     />
                   </div>
                 ))}
