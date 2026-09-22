@@ -15,8 +15,8 @@ const ReportModal = ({ isOpen, onClose, onItemCreated }) => {
   const [description, setDescription] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [locationName, setLocationName] = useState('ICCT Main Building');
-  const [latitude, setLatitude] = useState(14.5802);
-  const [longitude, setLongitude] = useState(121.1218);
+  const [latitude, setLatitude] = useState(14.61778);
+  const [longitude, setLongitude] = useState(121.10257);
   const [dateIncident, setDateIncident] = useState(
     new Date().toISOString().split('T')[0]
   );

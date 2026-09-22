@@ -107,7 +107,7 @@ async function main() {
   const bagsCategory = await prisma.category.findUnique({ where: { name: 'Bags & Wallets' } });
 
   // 3. Sample Item Reports
-  // Base coordinates for ICCT Colleges Cainta: 14.5802, 121.1218
+  // Base coordinates for ICCT Colleges Cainta Main Campus (V.V. Soliven Ave II): 14.61778, 121.10257
   const reportsCount = await prisma.itemReport.count();
   if (reportsCount === 0) {
     const report1 = await prisma.itemReport.create({
@@ -119,8 +119,8 @@ async function main() {
         description: 'Left my black Logitech M185 wireless mouse on table 4 during IPT2 class. It has a small ICCT sticker on the battery cover.',
         status: 'ACTIVE',
         locationName: 'Main Building 2nd Floor, Computer Lab 2',
-        latitude: 14.58045,
-        longitude: 121.12192,
+        latitude: 14.61772,
+        longitude: 121.10264,
         dateIncident: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
         contactInfo: 'yeinnee@icct.edu.ph or contact 09189876543',
         images: {
@@ -140,8 +140,8 @@ async function main() {
         description: 'Found an ICCT Student ID under the canteen bench near the drink station. Turned over to Security Office at Main Gate.',
         status: 'ACTIVE',
         locationName: 'Campus Canteen, Near Beverage Stall',
-        latitude: 14.58012,
-        longitude: 121.12165,
+        latitude: 14.61790,
+        longitude: 121.10250,
         dateIncident: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
         contactInfo: 'Claim at Campus Security Guard House - Main Gate with proof of enrollment.',
         images: {
@@ -161,8 +161,8 @@ async function main() {
         description: 'AquaFlask tumbler left at the bench near the College Library entrance. Has subtle scratches on the bottom base.',
         status: 'ACTIVE',
         locationName: '3rd Floor Library Hallway Bench',
-        latitude: 14.58031,
-        longitude: 121.12210,
+        latitude: 14.61782,
+        longitude: 121.10268,
         dateIncident: new Date(Date.now() - 48 * 60 * 60 * 1000), // 2 days ago
         contactInfo: 'Contact via message or 09189876543',
         images: {
@@ -182,8 +182,8 @@ async function main() {
         description: 'Found inside Room 301 after afternoon dismissal. Contains several discount cards and coins. No direct ID found.',
         status: 'CLAIMED',
         locationName: 'Room 301, Academic Building',
-        latitude: 14.57995,
-        longitude: 121.12150,
+        latitude: 14.61778,
+        longitude: 121.10257,
         dateIncident: new Date(Date.now() - 72 * 60 * 60 * 1000),
         contactInfo: 'Stored at Security Desk. Inquire directly.',
         images: {

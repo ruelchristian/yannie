@@ -23,7 +23,7 @@
    - Mark exact locations on campus (e.g. Main Gate, Canteen, Computer Lab 2, 3rd Flr Library).
 
 2. **Interactive Campus Map Integration**
-   - Built with **Leaflet** and **OpenStreetMap**, centered on **ICCT Colleges - Cainta Campus** (`14.5802° N, 121.1218° E`).
+   - Built with **Leaflet** and **OpenStreetMap**, centered on **ICCT Colleges - Cainta Main Campus** (`14.61778° N, 121.10257° E` on V.V. Soliven Ave II).
    - Color-coded pins: 🔴 **Lost Items** vs 🟢 **Found Items**.
    - Interactive popups with item photo previews and quick detail access.
 

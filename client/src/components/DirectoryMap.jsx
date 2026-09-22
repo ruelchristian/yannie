@@ -41,7 +41,18 @@ const createMapPin = (type = 'LOST', status = 'ACTIVE') => {
   });
 };
 
-const ICCT_CAINTA_CENTER = [14.5802, 121.1218];
+// Exact OpenStreetMap coordinates for ICCT Colleges (Main Campus), V.V. Soliven Ave II, Cainta
+const ICCT_CAINTA_CENTER = [14.61778, 121.10257];
+
+function MapRecenter({ center, zoom }) {
+  const map = useMap();
+  React.useEffect(() => {
+    if (center && center[0] && center[1]) {
+      map.setView(center, zoom || 18);
+    }
+  }, [center, zoom, map]);
+  return null;
+}
 
 const DirectoryMap = ({ items = [], onItemClick, height = "520px" }) => {
   // Filter items that have valid latitude & longitude
@@ -70,10 +81,11 @@ const DirectoryMap = ({ items = [], onItemClick, height = "520px" }) => {
       <div style={{ height }}>
         <MapContainer
           center={ICCT_CAINTA_CENTER}
-          zoom={17}
+          zoom={18}
           scrollWheelZoom={true}
           className="h-full w-full"
         >
+          <MapRecenter center={ICCT_CAINTA_CENTER} zoom={18} />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
