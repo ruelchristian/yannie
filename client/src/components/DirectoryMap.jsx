@@ -2,6 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { getImageUrl } from '../services/api';
 
 const createMapPin = (type = 'LOST', status = 'ACTIVE') => {
   const isResolved = ['RETURNED', 'CLOSED'].includes(status);
@@ -80,7 +81,7 @@ const DirectoryMap = ({ items = [], onItemClick, height = "520px" }) => {
 
           {mappedItems.map((item) => {
             const hasImage = item.images && item.images.length > 0;
-            const imgUrl = hasImage ? item.images[0].imageUrl : null;
+            const imgUrl = hasImage ? getImageUrl(item.images[0].imageUrl) : null;
 
             return (
               <Marker

@@ -1,4 +1,12 @@
-const API_BASE = '/api';
+const RAW_API_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE = RAW_API_URL ? `${RAW_API_URL}/api` : '/api';
+
+export const getImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  const baseUrl = import.meta.env.VITE_API_URL || '';
+  return `${baseUrl}${url}`;
+};
 
 const getHeaders = (isMultipart = false) => {
   const token = localStorage.getItem('icct_token');

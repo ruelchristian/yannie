@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { api } from '../services/api';
+import { api, getImageUrl } from '../services/api';
 import {
   X,
   MapPin,
@@ -163,7 +163,7 @@ const ItemDetailModal = ({ item, onClose, onItemUpdated }) => {
                 {item.images.map((img, idx) => (
                   <div key={idx} className="h-64 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                     <img
-                      src={img.imageUrl}
+                      src={getImageUrl(img.imageUrl)}
                       alt={`${item.title} ${idx + 1}`}
                       className="w-full h-full object-cover"
                     />

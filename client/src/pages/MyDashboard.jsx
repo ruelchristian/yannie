@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { api } from '../services/api';
+import { api, getImageUrl } from '../services/api';
 import ItemDetailModal from '../components/ItemDetailModal';
 import {
   User,
@@ -174,7 +174,7 @@ const MyDashboard = ({ onOpenReportModal }) => {
                     <div className="w-20 h-20 rounded-xl bg-slate-100 overflow-hidden shrink-0 border border-slate-200">
                       {hasImg ? (
                         <img
-                          src={report.images[0].imageUrl}
+                          src={getImageUrl(report.images[0].imageUrl)}
                           alt={report.title}
                           className="w-full h-full object-cover"
                         />

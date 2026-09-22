@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Calendar, Tag, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import { getImageUrl } from '../services/api';
 
 const statusConfig = {
   ACTIVE: { label: 'Active', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
@@ -10,7 +11,7 @@ const statusConfig = {
 
 const ItemCard = ({ item, onClick }) => {
   const hasImage = item.images && item.images.length > 0;
-  const imageUrl = hasImage ? item.images[0].imageUrl : null;
+  const imageUrl = hasImage ? getImageUrl(item.images[0].imageUrl) : null;
   const status = statusConfig[item.status] || statusConfig.ACTIVE;
   const isLost = item.type === 'LOST';
 
