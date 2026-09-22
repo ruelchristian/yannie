@@ -97,17 +97,17 @@ const Home = ({ onOpenReportModal }) => {
             Report missing belongings, browse items surrendered to the campus security post, and locate reported spots directly on the campus map.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 w-full sm:w-auto">
             <button
               onClick={onOpenReportModal}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md transition-all active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md transition-all active:scale-[0.98] min-h-[44px]"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Report Item Now</span>
             </button>
             <button
               onClick={() => setViewMode('map')}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all min-h-[44px]"
             >
               <MapIcon className="w-4 h-4 text-sky-300" />
               <span>Explore Campus Map</span>
@@ -121,67 +121,67 @@ const Home = ({ onOpenReportModal }) => {
       </div>
 
       {/* Quick Summary Counter Ribbon */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold">
-            <Layers className="w-5 h-5" />
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold shrink-0">
+            <Layers className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <div className="text-xl font-extrabold text-slate-900">{items.length}</div>
-            <div className="text-xs text-slate-500 font-medium">Total Listings</div>
+            <div className="text-lg sm:text-xl font-extrabold text-slate-900">{items.length}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 font-medium">Total Listings</div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
-            <HelpCircle className="w-5 h-5" />
+        <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold shrink-0">
+            <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <div className="text-xl font-extrabold text-slate-900">{totalLostCount}</div>
-            <div className="text-xs text-slate-500 font-medium">Lost Items</div>
+            <div className="text-lg sm:text-xl font-extrabold text-slate-900">{totalLostCount}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 font-medium">Lost Items</div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-            <CheckCircle className="w-5 h-5" />
+        <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold shrink-0">
+            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <div className="text-xl font-extrabold text-slate-900">{totalFoundCount}</div>
-            <div className="text-xs text-slate-500 font-medium">Found Items</div>
+            <div className="text-lg sm:text-xl font-extrabold text-slate-900">{totalFoundCount}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 font-medium">Found Items</div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-            <Clock className="w-5 h-5" />
+        <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold shrink-0">
+            <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <div className="text-xl font-extrabold text-slate-900">{activeCount}</div>
-            <div className="text-xs text-slate-500 font-medium">Active Inquiries</div>
+            <div className="text-lg sm:text-xl font-extrabold text-slate-900">{activeCount}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 font-medium">Active Inquiries</div>
           </div>
         </div>
       </div>
 
       {/* Search & Filter Toolbar */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+      <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 sm:space-y-4">
         {/* Search input and View Mode Switcher */}
-        <div className="flex flex-col sm:flex-row items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
           <div className="relative flex-1 w-full">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search reports by item name, details, or campus location (e.g. Canteen, ID, Mouse)..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              placeholder="Search by name, details, or location (e.g. Canteen, ID)..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none min-h-[44px]"
             />
           </div>
 
           <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl shrink-0 w-full sm:w-auto justify-center">
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all min-h-[36px] ${
                 viewMode === 'grid'
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -192,7 +192,7 @@ const Home = ({ onOpenReportModal }) => {
             </button>
             <button
               onClick={() => setViewMode('map')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all min-h-[36px] ${
                 viewMode === 'map'
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -205,14 +205,14 @@ const Home = ({ onOpenReportModal }) => {
         </div>
 
         {/* Type and Category Filter Chips */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-100">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-slate-100">
           {/* Type tabs */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
             {['ALL', 'LOST', 'FOUND'].map((type) => (
               <button
                 key={type}
                 onClick={() => setSelectedType(type)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-3 py-2 rounded-xl text-xs font-bold transition-all text-center min-h-[38px] ${
                   selectedType === type
                     ? type === 'LOST'
                       ? 'bg-rose-600 text-white shadow-sm'
@@ -222,17 +222,17 @@ const Home = ({ onOpenReportModal }) => {
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
-                {type === 'ALL' ? 'All Items' : type === 'LOST' ? '🔴 Lost Items' : '🟢 Found Items'}
+                {type === 'ALL' ? 'All' : type === 'LOST' ? '🔴 Lost' : '🟢 Found'}
               </button>
             ))}
           </div>
 
           {/* Select Dropdowns */}
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="text-xs px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              className="flex-1 sm:flex-initial text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 focus:ring-2 focus:ring-sky-500 focus:outline-none min-h-[38px]"
             >
               <option value="">All Categories</option>
               {categories.map((c) => (
