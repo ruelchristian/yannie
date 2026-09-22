@@ -47,9 +47,15 @@ function ClickHandler({ onLocationSelect }) {
 function MapRecenter({ position }) {
   const map = useMap();
   useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 150);
+
     if (position && position[0] && position[1]) {
       map.setView(position, 18);
     }
+
+    return () => clearTimeout(timer);
   }, [position, map]);
   return null;
 }

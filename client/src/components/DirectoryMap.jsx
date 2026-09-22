@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { MapPin, Calendar, ExternalLink } from 'lucide-react';
 import { getImageUrl } from '../services/api';
@@ -46,10 +46,16 @@ const ICCT_CAINTA_CENTER = [14.61778, 121.10257];
 
 function MapRecenter({ center, zoom }) {
   const map = useMap();
-  React.useEffect(() => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 150);
+
     if (center && center[0] && center[1]) {
       map.setView(center, zoom || 18);
     }
+
+    return () => clearTimeout(timer);
   }, [center, zoom, map]);
   return null;
 }
